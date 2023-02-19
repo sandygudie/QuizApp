@@ -13,7 +13,6 @@ export interface ISignUpRequest {
   category: ICategory[];
   createdDate:string;
   image:string;
-  userNo:number
 }
 
 export interface IUser {

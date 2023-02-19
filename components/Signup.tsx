@@ -29,6 +29,7 @@ export default function () {
       createdDate: Date(),
       category: [],
       image: "images/avatar/baddie.png",
+      
     };
 
     try {

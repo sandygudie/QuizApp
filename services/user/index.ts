@@ -34,7 +34,6 @@ export const getUser = () => {
   }
 };
 
-
 export const updateUser = async (userid: string | any, payload: any) => {
   let res = await fetch(`/api/user/${userid}`, {
     method: "PATCH",
