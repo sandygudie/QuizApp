@@ -45,10 +45,10 @@ export default function Home() {
                   className="h-36 md:h-auto flex flex-col justify-center items-center bg-light-secondary rounded-lg w-36 p-4 md:p-12 md:w-72 
           cursor-pointer text-center hover:scale-125 hover:bg-gradient-to-r from-primary to-pink-500 hover:text-tourquise hover:border-none"
                 >
-                  <p className="font-bold text-xl md:text-2xl mb-4">
+                  <p className="font-bold text-lg md:text-2xl mb-2">
                     {item.name}
                   </p>
-                  <item.Icon className="text-tourquise text-4xl md:text-6xl md:m-auto" />
+                  <item.Icon className="text-tourquise text-5xl md:text-6xl md:m-auto" />
                 </div>
               );
             })}

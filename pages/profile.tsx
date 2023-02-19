@@ -139,11 +139,11 @@ function Profile() {
               {" "}
               {profile?.username}
             </p>
-            <span className="text-sm mr-3 text-tourquise">
+            <span className="text-sm mr-3 text-tourquise font-semibold">
               Joined {new Date(profile?.createdDate).toDateString()}{" "}
             </span>
             <span className="text-sm ml-3 text-tourquise">
-              User-<span className="font-bold">0{profile?.userNo}</span>
+              UserNo-<span className="font-bold">0{profile?.userNo}</span>
             </span>
           </div>
           <hr className="border-t-none border-b border-[1px] border-[#38404ecf]" />
