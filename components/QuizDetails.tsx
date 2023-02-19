@@ -17,13 +17,20 @@ export default function QuizDetails({ item }: IProps) {
         />
       </div>
 
-      <div className="font-medium my-6">
+      <div className="text-left font-medium my-6">
         <p>
           {" "}
           Attempts: <span>{item.attempts}</span>
         </p>
-        <p> Last Played Score: {item.recentScore}%</p>
-        <p> Last Played : {new Date(item.lastPlayedDate).toDateString()}</p>
+        <p>
+          {" "}
+          Last Played Score: <span className="font-bold">{item.recentScore}%</span>
+        </p>
+        <p>
+          {" "}
+          Last Played :{" "}
+          <span className="font-bold">{new Date(item.lastPlayedDate).toUTCString()}</span>
+        </p>
       </div>
     </div>
   );

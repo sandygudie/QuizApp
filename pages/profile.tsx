@@ -86,13 +86,12 @@ function Profile() {
         className="absolute w-full md:w-5/6 top-2/4 left-2/4
         translate-x-2/4 translate-y-2/4"
       >
-        <div className="bg-light-secondary text-center rounded-xl">
+        <div className=" pt-8 bg-light-secondary text-center relative rounded-xl">
           <TiArrowBack
             onClick={() => router.push("/")}
-            className="text-3xl absolute cursor-pointer left-5 top-5 fill-white"
+            className="text-3xl w-1/6 cursor-pointer  fill-white"
           />
-
-          <div className="pt-8 pb-4">
+          <div className="pb-4">
             <div className="relative">
               <div className="relative w-24 m-auto">
                 <div
@@ -112,7 +111,6 @@ function Profile() {
                       alt="avatar"
                     />
                   </div>
-
                   <RiAddCircleFill className="absolute text-3xl fill-slate-secondary bottom-0 right-5" />
                 </div>
                 {openImageBox && (
@@ -134,7 +132,6 @@ function Profile() {
                 )}
               </div>
             </div>
-
             <p className="text-2xl md:text-3xl font-bold text-tourquise mb-2">
               {" "}
               {profile?.username}
@@ -215,7 +212,6 @@ function Profile() {
           </div>
         </div>
       </div>
-
       <ToastContainer />
     </>
   );
@@ -223,9 +219,7 @@ function Profile() {
 
 export default Profile;
 
-// fix - it's taking time to load maybe adda loading effect
 // Stats in each category
 // Share results
-// make the score border like progress bar
 // add background game environemrnt
 //
