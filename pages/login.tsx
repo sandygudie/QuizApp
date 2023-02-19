@@ -62,7 +62,7 @@ export default function Login() {
                 required
               />
               {loginError && (
-                <p className="text-red absolute top-50 text-xs italic">
+                <p className="text-red absolute mt-1 top-50 text-xs italic">
                   {loginError}
                 </p>
               )}

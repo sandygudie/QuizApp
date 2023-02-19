@@ -29,7 +29,6 @@ export default function () {
       createdDate: Date(),
       category: [],
       image: "images/avatar/baddie.png",
-      
     };
 
     try {
@@ -68,9 +67,8 @@ export default function () {
             value={username}
             required
           />
-        
 
-          <div className="absolute top-50">
+          <div className="absolute mt-1 top-50">
             {signUpError && (
               <p className="text-red text-xs italic">{signUpError}</p>
             )}
@@ -90,9 +88,7 @@ export default function () {
             type="submit"
             disabled={!isValid}
             className={`disabled:opacity-30 cursor-pointer py-3 px-4 bg-gradient-to-r from-primary to-pink-500 w-1/2 m-auto block mt-12
-              text-base text-white font-bold ${
-                loading && "disabled:hover"
-              } `}
+              text-base text-white font-bold ${loading && "disabled:hover"} `}
           >
             {loading ? (
               <CgSpinner className="animate-spin block m-auto  w-6 h-6" />
