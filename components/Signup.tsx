@@ -51,7 +51,7 @@ export default function () {
 
   return (
     <div className="mb-12 lg:mb-0  text-center">
-      <h1 className="text-2xl font-bold mb-3">
+      <h1 className="text-2xl font-bold mb-4">
         New User
         <span role="img" aria-label="wave">
           👋
@@ -70,7 +70,7 @@ export default function () {
 
           <div className="absolute mt-1 top-50">
             {signUpError && (
-              <p className="text-red text-xs italic">{signUpError}</p>
+              <p className="text-red text-[0.7rem] italic">{signUpError}</p>
             )}
             <div className="">
               {touched && (
@@ -87,7 +87,7 @@ export default function () {
           <button
             type="submit"
             disabled={!isValid}
-            className={`disabled:opacity-30 cursor-pointer py-3 px-4 bg-gradient-to-r from-primary to-pink-500 w-1/2 m-auto block mt-12
+            className={`disabled:opacity-30 cursor-pointer py-3 px-4 bg-gradient-to-r from-primary to-pink-500 w-1/2 m-auto block mt-14
               text-base text-white font-bold ${loading && "disabled:hover"} `}
           >
             {loading ? (
