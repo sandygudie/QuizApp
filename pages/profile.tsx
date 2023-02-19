@@ -83,8 +83,8 @@ function Profile() {
   return (
     <>
       <div
-        className="md:absolute w-full md:w-5/6 md:top-2/4 md:left-2/4
-        md:translate-x-2/4 md:translate-y-2/4"
+        className="absolute w-full md:w-5/6 top-2/4 left-2/4
+        translate-x-2/4 translate-y-2/4"
       >
         <div className="bg-light-secondary text-center rounded-xl">
           <TiArrowBack
@@ -142,7 +142,9 @@ function Profile() {
             <span className="text-sm mr-3 text-tourquise">
               Joined {new Date(profile?.createdDate).toDateString()}{" "}
             </span>
-            <span className="text-sm ml-3 text-tourquise">User-<span className="font-bold">0{profile?.userNo}</span></span>
+            <span className="text-sm ml-3 text-tourquise">
+              User-<span className="font-bold">0{profile?.userNo}</span>
+            </span>
           </div>
           <hr className="border-t-none border-b border-[1px] border-[#38404ecf]" />
           <div className="px-4 md:px-12 pt-4 text-center">
@@ -170,11 +172,7 @@ function Profile() {
                         </div>
                         {isOpenModal && selectedIndex === index && (
                           <Modal
-                            children={
-                              <QuizDetails
-                                item={item}
-                              />
-                            }
+                            children={<QuizDetails item={item} />}
                             handleCloseModal={handleCloseModal}
                           />
                         )}

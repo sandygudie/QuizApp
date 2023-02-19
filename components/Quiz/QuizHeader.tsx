@@ -17,7 +17,7 @@ function Display({ goBack, timer, scoreStatus, category }: IQuizProps) {
         <div className="flex items-center w-full md:w-3/4 lg:w-1/2">
           <TiArrowBack
             onClick={() => goBack()}
-            className={`${scoreStatus === "finalscore" && "hidden"} text-4xl`}
+            className={`text-4xl`}
           />
 
           <div className="mx-4 lg:mx-8 text-lg md:text-xl">
