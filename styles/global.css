@@ -1,27 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  line-height: 1.6;
-  font-size: 18px;
-}
-
-* {
+  scroll-behavior: smooth;
   box-sizing: border-box;
 }
-
-a {
-  color: #0070f3;
-  text-decoration: none;
+html,
+body {
+  @apply bg-secondary h-full text-white;
 }
 
-a:hover {
-  text-decoration: underline;
+input,
+button {
+  border-radius: 10px;
+  outline: none;
+  color: black;
 }
 
-img {
-  max-width: 100%;
-  display: block;
+.radio-input {
+  visibility: hidden;
+}
+
+.swirl-in-fwd {
+  -webkit-animation: swirl-in-fwd 1s ease-out both;
+  animation: swirl-in-fwd 1s ease-out both;
+}
+
+@-webkit-keyframes swirl-in-fwd {
+  0% {
+    -webkit-transform: rotate(-540deg) scale(0);
+    transform: rotate(-540deg) scale(0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotate(0) scale(1);
+    transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes swirl-in-fwd {
+  0% {
+    -webkit-transform: rotate(-540deg) scale(0);
+    transform: rotate(-540deg) scale(0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotate(45) scale(1);
+    transform: rotate(45) scale(1);
+    opacity: 1;
+  }
+}
+.Toastify__toast-theme--colored.Toastify__toast--success {
+  background: hsl(98, 97%, 24%)!important;
+}
+.Toastify__toast-container--top-center {
+  top: 0em !important;
+}
+
+.Toastify__toast{
+  min-height: 20px !important;
+  padding: 4px !important;
+}
+.Toastify__toast-container{
+  width: 250px !important;
 }
