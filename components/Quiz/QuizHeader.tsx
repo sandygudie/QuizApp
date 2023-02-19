@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import router, { useRouter } from "next/router";
 import React, { useState } from "react";
 import { BsInfoCircle } from "react-icons/bs";
 import { TiArrowBack } from "react-icons/ti";
@@ -16,7 +16,7 @@ function Display({ goBack, timer, scoreStatus, category }: IQuizProps) {
       <div className="flex shadow-xl font-bold text-slate-400 justify-between items-center w-full px-2 lg:px-4 lg:pr-20 py-6">
         <div className="flex items-center w-full md:w-3/4 lg:w-1/2">
           <TiArrowBack
-            onClick={() => goBack()}
+            onClick={() => scoreStatus === "finalscore" ? router.push("/"): goBack()}
             className={`text-4xl`}
           />
 

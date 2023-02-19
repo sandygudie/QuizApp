@@ -24,7 +24,7 @@ function CloseQuiz({ category, handleStatus }: IProps) {
       </p>
       <div className="text-center flex items-center justify-around mt-8">
         <button
-          className="py-2 w-40 text-white hover:bg-secondary/10 hover:text-secondary px-4 rounded-md bg-secondary font-bold"
+          className="p-3 px-6 w-40 text-white hover:bg-secondary/10 hover:text-secondary px-4 rounded-md bg-secondary font-bold"
           type="button"
           onClick={closeQuiz}
         >
@@ -32,7 +32,7 @@ function CloseQuiz({ category, handleStatus }: IProps) {
           Continue
         </button>
         <button
-          className="py-2 w-40 text-white font-bold hover:bg-primary/10 hover:text-secondary duration-300 px-4 rounded-md bg-primary"
+          className="p-3 px-6 w-40 text-white font-bold hover:bg-primary/10 hover:text-secondary duration-300 px-4 rounded-md bg-primary"
           type="button"
           onClick={cancelClose}
         >
