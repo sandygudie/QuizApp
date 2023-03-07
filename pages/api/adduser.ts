@@ -22,7 +22,7 @@ const addUser = async (req: NextApiRequest, res: NextApiResponse) => {
     const { username } = req.body;
     const existingUser = await User.findOne({ username });
     const userCount = await User.count({});
-console.log(userCount)
+
     if (existingUser) {
       return res.status(400).json({
         error: "username already exist",

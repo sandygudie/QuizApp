@@ -13,14 +13,12 @@ function Quiz() {
   const [quizQuestions, setQuizQuestions] = useState<IQuestion[] | []>([]);
   const [start, setStart] = useState(true);
 
- 
   useEffect(() => {
     const user = getUser();
     if (!user) {
       router.push("/login");
     }
     getQuizData(Number(id)).then((result) => {
-      console.log(result);
       setQuizQuestions(result);
     });
   }, [data]);

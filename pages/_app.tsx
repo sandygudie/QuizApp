@@ -8,6 +8,5 @@ export default function App({ Component, pageProps }: AppProps) {
 
 
 // todo
-
 // the profile page does not log out users even -
 // the quiz app too, even when the mongo db data is deleted that is because the data is from local storage

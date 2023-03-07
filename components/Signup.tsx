@@ -12,7 +12,7 @@ export default function () {
   const [loading, setLoading] = useState(false);
 
   let isValid = username !== "" && username.length > 4 && regexValid === false;
-  const regex = /^[a-z0-9]/;
+  const regex = /^[a-z0-9A-Z]/;
 
   const OnChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSignUpError("");
@@ -61,7 +61,7 @@ export default function () {
         <form onSubmit={onSignupHandler} className="relative">
           <input
             type="text"
-            placeholder="What should we call you?"
+            placeholder="What should we call you? sandy"
             className="p-3 w-80 border-tourquise border-[1px] border-solid block"
             onChange={(e) => OnChangeHandler(e)}
             value={username}

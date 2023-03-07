@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { TiArrowBack } from "react-icons/ti";
 import { FiLogOut } from "react-icons/fi";
 import { RiAddCircleFill } from "react-icons/ri";
 import ProgressBar from "../components/ProgressBar";
-import { SHARE_MENU } from "../data";
 import { avatars } from "../utils/avatar";
 import { getUser, logOut, setUser, updateUser } from "../services/user";
 import { ICategory, IUser } from "../types";
@@ -137,10 +135,17 @@ function Profile() {
               {profile?.username}
             </p>
             <span className="text-sm mr-3 text-tourquise font-semibold">
-              Joined {new Date(profile?.createdDate).toDateString()}{" "}
+              Joined{" "}
+              {new Date(profile?.createdDate)
+                .toDateString()
+                .replace(/T.*/, "")
+                .split("-")
+                .reverse()
+                .join("-")}{" "}
             </span>
             <span className="text-sm ml-3 text-tourquise">
-              UserNo-<span className="font-bold">0{profile?.userNo}</span>
+              UserNo-
+              {/* <span className="font-bold">0{profile?.userNo}</span> */}
             </span>
           </div>
           <hr className="border-t-none border-b border-[1px] border-[#38404ecf]" />
@@ -183,25 +188,6 @@ function Profile() {
             </div>
           </div>
           <hr className="border-t-none border-b border-[1px] border-[#38404ecf]" />
-          {/* <div className="flex w-1/2 m-auto items-center cursor-pointer justify-center py-8">
-            <h1 className="text-2xl font-bold">Share: </h1>{" "}
-            {SHARE_MENU.map(({ name, Icon, link }, i) => {
-              return (
-                <a
-                  key={i}
-                  target="_blank"
-                  rel="noreferrer"
-                  href={link}
-                  className="p-3 flex gap-x-6 justify-between items-center text-tourquise  text-2xl"
-                >
-                  <div className="flex items-center hover:text-white">
-                    {<Icon />}
-                    <span className="text-sm"> {name}</span>
-                  </div>
-                </a>
-              );
-            })}
-          </div> */}
           <div className="py-6">
             <span
               onClick={() => logOut()}
