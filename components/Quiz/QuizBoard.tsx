@@ -16,7 +16,7 @@ export default function QuizBoard({ quizQuestions }: IQuizBoardProps) {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   let audioElement: HTMLAudioElement;
-  let [timer, setTimer] = useState(6);
+  let [timer, setTimer] = useState(10);
   const [correctAnswer, setCorrectAnswer] = useState(0);
   let [questionAmount, setQuestionAmount] = useState(0);
   const [quizTiming, setQuizTiming] = useState(true);
@@ -104,7 +104,7 @@ export default function QuizBoard({ quizQuestions }: IQuizBoardProps) {
           <DisplayScore category={category} correctAnswer={correctAnswer} />
         ) : (
           <>
-            <div className="z-10 w-full md:w-auto absolute top-2/4 left-2/4 translate-x-2/4 translate-y-2/4 mt-10">
+            <div className="z-10 w-full md:w-[30rem] lg:w-[35rem] absolute top-2/4 left-2/4 translate-x-2/4 translate-y-2/4 mt-10">
               {quizQuestions.length === 0 ? (
                 <p> Quiz Loading</p>
               ) : (

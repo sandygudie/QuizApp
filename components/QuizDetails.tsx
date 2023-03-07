@@ -5,7 +5,6 @@ interface IProps {
   item: ICategory | any;
 }
 export default function QuizDetails({ item }: IProps) {
-  console.log(item);
   return (
     <div key={item._id} className="text-center">
       <div>

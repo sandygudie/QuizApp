@@ -8,7 +8,8 @@ interface HeaderProps {
 }
 function Header({ profile }: HeaderProps) {
   return (
-    <div className="shadow-2xl flex py-1 px-4 lg:px-8 items-center justify-between item-center ">
+    <div className="shadow-2xl">
+      <div className="flex py-1 px-4 lg:px-8 xl:max-w-7xl w-full m-auto items-center justify-between item-center ">
       <div className="flex items-center">
         {" "}
         <img
@@ -31,6 +32,7 @@ function Header({ profile }: HeaderProps) {
           Profile
         </Link>
       </div>
+    </div>
     </div>
   );
 }

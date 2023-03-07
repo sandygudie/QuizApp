@@ -31,10 +31,33 @@ export default function Home() {
     <>
       <Head>
         <title>Quiz App</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="Test your Knowledge of Programming Languages"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest"></link>
       </Head>
       <div className="w-full">
         <Header profile={profile} />
-        <div className="p-2 md:w-3/4 text-center m-auto mt-4">
+        <div className="xl:max-w-7xl p-2 text-center m-auto mt-4">
           <h1 className="font-bold text-xl md:text-[2em]">Play Quiz</h1>
           <div className="my-8 flex justify-center flex-wrap gap-10">
             {Categories.map((item) => {
