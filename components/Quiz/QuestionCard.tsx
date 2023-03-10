@@ -55,7 +55,7 @@ export default function QuestionCard({
       setSelectedIndex(index);
       ScoreStatusHandler("correct");
       correctAnswerHandler(correctAnswer + 1);
-      const audioElement = new Audio("images/applause.wav");
+      const audioElement = new Audio("images/correct-answer.mp3");
       audioElement.play();
     } else {
       event.currentTarget.style.backgroundColor = "red";

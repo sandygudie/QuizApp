@@ -57,8 +57,9 @@ export default function Home() {
       </Head>
       <div className="w-full">
         <Header profile={profile} />
-        <div className="xl:max-w-7xl p-2 text-center m-auto mt-4">
+        <div className="xl:max-w-7xl p-2 text-center m-auto mt-4 flex justify-center items-center h-[90vh] flex-col">
           <h1 className="font-bold text-xl md:text-[2em]">Play Quiz</h1>
+      
           <div className="my-8 flex justify-center flex-wrap gap-10">
             {Categories.map((item) => {
               return (
@@ -75,6 +76,7 @@ export default function Home() {
                 </div>
               );
             })}
+       
           </div>
         </div>
       </div>

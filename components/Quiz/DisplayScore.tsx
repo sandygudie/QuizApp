@@ -48,7 +48,7 @@ export default function DisplayScore({
         <Link className="p-3 px-6 rounded-lg bg-primary " href={"/"}>
           Try Again
         </Link>
-        <Link className="p-3 px-6 rounded-lg bg-primary" href="">
+        <Link className="p-3 px-6 rounded-lg bg-primary opacity-20" href="#">
           Leader Board
         </Link>
       </div>

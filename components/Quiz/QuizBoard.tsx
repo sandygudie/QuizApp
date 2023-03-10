@@ -27,7 +27,7 @@ export default function QuizBoard({ quizQuestions }: IQuizBoardProps) {
   const [status, setStatus] = useState("running");
   const router = useRouter();
   const data = router.query;
-  const { id, category } = data;
+  const { category } = data;
 
   useEffect(() => {
     let interval: string | number | NodeJS.Timeout | undefined;
@@ -41,7 +41,7 @@ export default function QuizBoard({ quizQuestions }: IQuizBoardProps) {
             audioElement = new Audio("images/time-up.wav");
             audioElement.play();
             setTimeout(() => {
-              nextQuestion(6);
+              nextQuestion();
             }, 3000);
           }
           setTimer((timer = timer - 1));
@@ -68,10 +68,10 @@ export default function QuizBoard({ quizQuestions }: IQuizBoardProps) {
     scoreStatus: "correct" | "wrong" | "timeup" | "finalscore" | ""
   ) => setScoreStatus(scoreStatus);
 
-  const nextQuestion = (timer: number) => {
+  const nextQuestion = () => {
     setQuestionAmount((questionAmount = questionAmount + 1));
     if (questionAmount < quizQuestions.length) {
-      setTimer(timer);
+      setTimer(10);
       setQuizTiming(true);
       setScoreStatus("");
     } else {
@@ -85,7 +85,7 @@ export default function QuizBoard({ quizQuestions }: IQuizBoardProps) {
     setIsOpenModal(true);
     setStatus("pause");
   };
- 
+
   const handleStatus = () => {
     setIsOpenModal(false);
     setStatus("running");
@@ -137,11 +137,7 @@ export default function QuizBoard({ quizQuestions }: IQuizBoardProps) {
       {isOpenModal && (
         <Modal
           children={
-            <CloseQuiz
-
-              handleStatus={handleStatus}
-              category={category}
-            />
+            <CloseQuiz handleStatus={handleStatus} category={category} />
           }
         />
       )}
