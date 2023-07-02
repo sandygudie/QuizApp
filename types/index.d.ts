@@ -8,11 +8,9 @@ export interface IQuestion {
 }
 [];
 
-export interface ISignUpRequest {
+export interface ILoginRequest {
   username: string;
-  category: ICategory[];
-  createdDate:string;
-  image:string;
+ userId:string|null
 }
 
 export interface IUser {

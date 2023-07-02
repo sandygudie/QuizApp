@@ -23,7 +23,7 @@ async function getUserProfile(req: NextApiRequest, res: NextApiResponse) {
     await connectMongo();
     let user = await User.findById(id);
     return res.status(200).json({
-      data: JSON.parse(JSON.stringify(user)), // i think there is no need for the double parse and stringify
+      data: JSON.parse(JSON.stringify(user)),
       success: true,
     });
   } catch (error) {

@@ -1,28 +1,27 @@
-import { Schema, model, models } from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 
-const userSchema = new Schema({
-  username: {
-    type: String,
-    minLength: 5,
-    required: true,
-    unique: true,
-  },
-  createdDate: Date,
-  category: [
-    {
-      name: String,
-      score: Number,
-      attempts: Number,
-      recentScore: Number,
-      lastPlayedDate: Date,
+const userSchema = new Schema(
+  {
+    username: {
+      type: String,
+      minLength: 5,
+      required: true,
+      unique: true,
     },
-  ],
-  image: {
-    type: String,
-    required: true,
+
+    category: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Category",
+      },
+    ],
+    image: {
+      type: String,
+      unique: true,
+    },
   },
-  userNo:Number
-});
+  { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
+);
 
 userSchema.set("toJSON", {
   transform: (returnedObject: any) => {

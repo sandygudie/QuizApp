@@ -59,24 +59,24 @@ export default function Home() {
         <Header profile={profile} />
         <div className="xl:max-w-7xl p-2 text-center m-auto mt-4 flex justify-center items-center h-[90vh] flex-col">
           <h1 className="font-bold text-xl md:text-[2em]">Play Quiz</h1>
-      
+
           <div className="my-8 flex justify-center flex-wrap gap-10">
             {Categories.map((item) => {
               return (
-                <div
+                <button
+                  aria-label={item.name}
                   key={item.id}
                   onClick={() => getQuiz(item.name, item.id)}
-                  className="h-36 md:h-auto flex flex-col justify-center items-center bg-light-secondary rounded-lg w-36 p-4 md:p-12 md:w-72 
+                  className=" text-white h-36 md:h-auto flex flex-col justify-center items-center bg-light-secondary rounded-lg w-36 p-4 md:p-12 md:w-72 
           cursor-pointer text-center hover:scale-125 hover:bg-gradient-to-r from-primary to-pink-500 hover:text-tourquise hover:border-none"
                 >
                   <p className="font-bold text-lg md:text-2xl mb-2">
                     {item.name}
                   </p>
                   <item.Icon className="text-tourquise text-5xl md:text-6xl md:m-auto" />
-                </div>
+                </button>
               );
             })}
-       
           </div>
         </div>
       </div>

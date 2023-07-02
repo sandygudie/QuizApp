@@ -1,19 +1,8 @@
 import router from "next/router";
-import { ISignUpRequest } from "../../types";
+import { ILoginRequest } from "../../types";
 
-export const login = async (loginName: string) => {
+export const login = async (payload: ILoginRequest) => {
   let response = await fetch("/api/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ username: loginName }),
-  });
-  return response;
-};
-
-export const signup = async (payload: ISignUpRequest) => {
-  let response = await fetch("/api/adduser", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

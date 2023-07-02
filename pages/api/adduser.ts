@@ -35,7 +35,7 @@ const addUser = async (req: NextApiRequest, res: NextApiResponse) => {
         createdDate: addedUser.createdDate,
         category: addedUser.category,
         image: addedUser.image,
-        userNo: userCount + 1
+        userNo: userCount + 1,
       };
       res.status(201).json({ message: "successful", quizuser });
     }

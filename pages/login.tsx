@@ -3,10 +3,11 @@ import { useRouter } from "next/router";
 import { login, logOut, setUser } from "../services/user";
 import { CgSpinner } from "react-icons/cg";
 import Signup from "../components/Signup";
+import { ILoginRequest } from "../types";
 
 export default function Login() {
   const router = useRouter();
-  const [loginName, setLoginName] = useState("");
+  const [username, setusername] = useState("");
   const [loginError, setLoginError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -17,14 +18,19 @@ export default function Login() {
   const OnChangeLoginHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setLoginError("");
     let value = e.target.value;
-    setLoginName(value);
+    setusername(value);
   };
 
   const onLoginHandler = async (e: FormEvent) => {
     e.preventDefault();
     try {
       setLoading(true);
-      let response = await login(loginName);
+      const userId = localStorage.getItem("userId");
+      const loginDetails: ILoginRequest = {
+        username,
+        userId,
+      };
+      let response = await login(loginDetails);
       // get the data
       let data = await response.json();
       if (data.message) {
@@ -42,7 +48,6 @@ export default function Login() {
   return (
     <div className="bg-secondary absolute top-2/4 left-2/4 translate-x-2/4 translate-y-2/4 w-full lg:w-9/12">
       <div className="lg:flex justify-between items-center">
-        <Signup />
         <hr className="bg-indigo-500 lg:w-1 lg:h-screen" />
         <div className="mt-12 lg:mt-0 text-center">
           <h1 className="text-2xl font-bold mb-4">Existing User</h1>
@@ -53,9 +58,9 @@ export default function Login() {
                   type="text"
                   placeholder="Username?"
                   className="p-3 w-80 border-tourquise border-[1px] border-solid"
-                  name="loginName"
+                  name="username"
                   onChange={(e) => OnChangeLoginHandler(e)}
-                  value={loginName}
+                  value={username}
                   required
                 />
                 {loginError && (
