@@ -8,12 +8,12 @@ interface HeaderProps {
 }
 function Header({ profile }: HeaderProps) {
   return (
-    <div className="shadow-2xl">
-      <div className="flex py-1 px-4 lg:px-8 xl:max-w-7xl w-full m-auto items-center justify-between item-center ">
+    <div className="z-20 shadow-2xl">
+      <div className="flex py-3 px-4 lg:px-8 xl:max-w-7xl w-full m-auto items-center justify-between item-center ">
       <div className="flex items-center">
         {" "}
         <img
-          className="w-14 lg:w-20 rounded-full inline p-2"
+          className="w-14 lg:w-16 rounded-full inline p-2"
           src={profile?.image}
           alt="profile"
         />
@@ -26,10 +26,10 @@ function Header({ profile }: HeaderProps) {
 
         <Link
           href="/profile"
-          className="text-lg font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-4 py-1 rounded-lg"
+          className="text-base font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-4 py-2 rounded-lg"
         >
           {" "}
-          Profile
+          profile
         </Link>
       </div>
     </div>

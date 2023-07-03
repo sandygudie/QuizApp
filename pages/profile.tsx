@@ -81,14 +81,26 @@ function Profile() {
   return (
     <>
       <div
-        className="absolute w-full md:w-5/6 top-2/4 left-2/4
-        translate-x-2/4 translate-y-2/4"
+        className="md:absolute w-full md:w-5/6 top-2/4 left-2/4
+        md:translate-x-2/4 md:translate-y-2/4 h-screen md:h-[90vh]"
       >
-        <div className=" pt-8 bg-light-secondary text-center relative rounded-xl">
-          <TiArrowBack
-            onClick={() => router.push("/")}
-            className="text-3xl w-1/6 cursor-pointer  fill-white"
-          />
+        <div className="h-full py-8 bg-light-secondary text-center relative rounded-xl">
+          <div className="flex items-center justify-between mx-6 ">
+            <span
+             
+              className=" text-2xl fill-white relative"
+            >
+              <TiArrowBack  onClick={() => router.push("/")} className="cursor-pointer inline" />
+            </span>
+
+            <span
+              onClick={() => logOut()}
+              className="cursor-pointer text-primary text-sm font-bold"
+            >
+              Logout <FiLogOut className="inline" />
+            </span>
+          </div>
+
           <div className="pb-4">
             <div className="relative">
               <div className="relative w-24 m-auto">
@@ -104,7 +116,7 @@ function Profile() {
                     <img
                       className={`${
                         loadingImage && "opacity-20"
-                      } rounded-full p-2 w-24 h-24 cursor-pointer `}
+                      } rounded-full p-2 w-24 h-24 cursor-pointer`}
                       src={selectedImage || profile?.image}
                       alt="avatar"
                     />
@@ -114,7 +126,7 @@ function Profile() {
                 {openImageBox && (
                   <div className="absolute md:top-1/2 -left-24 md:left-24 bg-white p-4 w-72 rounded-lg">
                     <p className="text-secondary pb-2 font-bold">
-                      Select Avatar
+                      Choose Your Avatar
                     </p>
                     <div ref={ref} className="flex gap-4 flex-wrap">
                       {avatars.map((item) => (
@@ -136,27 +148,23 @@ function Profile() {
             </p>
             <span className="text-sm mr-3 text-tourquise font-semibold">
               Joined{" "}
-              {new Date(profile?.createdDate)
+              {new Date(profile?.created_at)
                 .toDateString()
                 .replace(/T.*/, "")
                 .split("-")
                 .reverse()
                 .join("-")}{" "}
             </span>
-            <span className="text-sm ml-3 text-tourquise">
-              UserNo-
-              {/* <span className="font-bold">0{profile?.userNo}</span> */}
-            </span>
           </div>
           <hr className="border-t-none border-b border-[1px] border-[#38404ecf]" />
-          <div className="px-4 md:px-12 pt-4 text-center">
-            <p className="font-bold text-gray-500 text-xl mb-12">
-              {" "}
-              Highest Stats{" "}
-            </p>
+          <div className="pt-4 text-center">
             <div className="mt-12 mb-8">
               {profile?.category.length ? (
                 <>
+                  <p className="font-bold text-gray-500 text-xl mb-12">
+                    {" "}
+                    Highest Stats{" "}
+                  </p>
                   <div className="flex flex-wrap items-center justify-center gap-x-2">
                     {profile?.category.map((item: ICategory, index: number) => (
                       <>
@@ -183,18 +191,12 @@ function Profile() {
                   </div>
                 </>
               ) : (
-                <p className="font-medium text-primary"> No Quiz Taken</p>
+                <p className="font-medium  text-lg  tracking-widest text-gray-500 my-32">
+                  {" "}
+                  No Quiz Record
+                </p>
               )}
             </div>
-          </div>
-          <hr className="border-t-none border-b border-[1px] border-[#38404ecf]" />
-          <div className="py-6">
-            <span
-              onClick={() => logOut()}
-              className="text-primary cursor-pointer text-xl font-bold"
-            >
-              Logout <FiLogOut className="inline" />
-            </span>
           </div>
         </div>
       </div>

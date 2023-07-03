@@ -17,7 +17,7 @@ export interface IUser {
   username: string;
   category: ICourse[];
   _id: string;
-  createdDate: string|any;
+  created_at: string|any;
   image: ImgHTMLAttributes<HTMLImageElement>;
   userNo:number
 }

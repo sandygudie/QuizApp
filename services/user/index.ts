@@ -12,8 +12,9 @@ export const login = async (payload: ILoginRequest) => {
   return response;
 };
 
-export const setUser = (user: string) => {
+export const setUser = (user: { _id: string }) => {
   localStorage.setItem("currentUser", JSON.stringify(user));
+  localStorage.setItem("userId", user._id);
 };
 
 export const getUser = () => {
