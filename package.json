@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@tippyjs/react": "^4.2.6",
     "@types/react-table": "^7.7.14",
     "axios": "^1.2.2",
     "date-fns": "^2.29.3",

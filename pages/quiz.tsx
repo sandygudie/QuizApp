@@ -1,35 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { IQuestion } from "../types";
 import { useRouter } from "next/router";
-import { getQuizData } from "../services/quizService";
-import StartTimer from "../components/Quiz/StartTimer";
+import { getQuestions } from "../services/quizService";
+import CountDown from "../components/Quiz/CountDown";
 import QuizBoard from "../components/Quiz/QuizBoard";
 import { getUser } from "../services/user";
 
 function Quiz() {
   const router = useRouter();
   const data = router.query;
-  const { id } = data;
+
   const [quizQuestions, setQuizQuestions] = useState<IQuestion[] | []>([]);
-  const [start, setStart] = useState(true);
+  const [isCountdown, setIsCountdown] = useState(true);
 
   useEffect(() => {
     const user = getUser();
     if (!user) {
       router.push("/login");
     }
-    getQuizData(Number(id)).then((result) => {
-      setQuizQuestions(result);
-    });
+    getQuestionData();
   }, [data]);
-  const setStartHandler = (start: boolean) => {
-    setStart(start);
+
+  const getQuestionData = async () => {
+    try {
+      let result = await getQuestions(Number(data.id));
+      setQuizQuestions(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const setCountDownHandler = (counter: boolean) => {
+    setIsCountdown(counter);
   };
 
   return (
     <div className="">
-      {start ? (
-        <StartTimer start={start} setStartHandler={setStartHandler} />
+      {isCountdown ? (
+        <CountDown isCountdown setCountDownHandler={setCountDownHandler} />
       ) : (
         <QuizBoard quizQuestions={quizQuestions} />
       )}

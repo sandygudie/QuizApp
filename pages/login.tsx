@@ -2,13 +2,12 @@ import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { login, logOut, setUser } from "../services/user";
 import { CgSpinner } from "react-icons/cg";
-
 import { ILoginRequest } from "../types";
 
 export default function Login() {
   const router = useRouter();
   const [username, setUsername] = useState("");
-  const [error, setError] = useState(" ");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -19,16 +18,12 @@ export default function Login() {
     setError("");
     let value = e.target.value.replace(/\s/g, "");
     setUsername(value);
-
     const regex = /^[a-z0-9A-Z]/;
     if (regex.test(value)) {
-      e.target.value.length <= 4
-        ? setError("username not less than 5 characters")
-        : setError("");
+      setError("");
     } else {
       setError("No specials characters at beginning");
     }
-
     if (e.target.value.length === 0) {
       setError("");
     }

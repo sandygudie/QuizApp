@@ -32,7 +32,7 @@ function Display({ goBack, timer, scoreStatus, category }: IQuizProps) {
               } md:flex items-center hidden`}
             >
               <BsInfoCircle className="text-xl inline mr-2" />
-              <span className="italics">Answer each question in 30seconds</span>
+              <span className="italics">Answer each question in 10seconds</span>
             </div>
           </div>
 

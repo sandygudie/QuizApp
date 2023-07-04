@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 
 interface IStartTimerProps {
-  start: boolean;
-  setStartHandler: (start: boolean) => void;
+  isCountdown: boolean;
+  setCountDownHandler: (isCountdown: boolean) => void;
 }
 
-function StartTimer({ start, setStartHandler }: IStartTimerProps) {
+function CountDown({ isCountdown,  setCountDownHandler }: IStartTimerProps) {
   let [timer, settimer] = useState(3);
+
   useEffect(() => {
     let interval: string | number | NodeJS.Timeout | undefined;
-    if (start === true) {
+    if (isCountdown) {
       interval = setInterval(() => {
         if (timer === 0) {
           clearInterval(interval);
-          setStartHandler(false);
+          setCountDownHandler(false);
         }
         settimer((timer = timer - 1));
       }, 1000);
@@ -28,4 +29,4 @@ function StartTimer({ start, setStartHandler }: IStartTimerProps) {
   );
 }
 
-export default StartTimer;
+export default CountDown;

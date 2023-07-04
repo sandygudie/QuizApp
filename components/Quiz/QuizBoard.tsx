@@ -7,6 +7,7 @@ import Score from "./Score";
 import { useRouter } from "next/router";
 import Modal from "../Modal";
 import CloseQuiz from "./CloseQuiz";
+import { CgSpinner } from "react-icons/cg";
 
 interface IQuizBoardProps {
   quizQuestions: IQuestion[];
@@ -106,7 +107,11 @@ export default function QuizBoard({ quizQuestions }: IQuizBoardProps) {
           <>
             <div className="z-10 w-full md:w-[30rem] lg:w-[35rem] absolute top-2/4 left-2/4 translate-x-2/4 translate-y-2/4 mt-10">
               {quizQuestions.length === 0 ? (
-                <p> Quiz Loading</p>
+                <p className="text-center font-bold">
+                  {" "}
+                  Quiz Loading{" "}
+                  <CgSpinner className="animate-spin block m-auto w-10 h-10" />
+                </p>
               ) : (
                 <>
                   {quizQuestions.map((list, i) => {
