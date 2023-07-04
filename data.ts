@@ -3,11 +3,11 @@ import {
   SiCss3,
   SiReact,
   SiTypescript,
-  SiNextdotjs,
+
 } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io";
 import {
-  RiAddCircleFill,
+ 
   RiFacebookCircleFill,
   RiTwitterFill,
   RiLinkedinFill,
@@ -45,12 +45,7 @@ export const Categories = [
     Icon: SiTypescript,
     score: 0,
   },
-  {
-    id: 18,
-    name: "NEXTJS",
-    Icon: SiNextdotjs,
-    score: 0,
-  },
+  
 ];
 const referralMessage = "";
 export const SHARE_MENU = [

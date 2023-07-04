@@ -7,7 +7,7 @@ import { ILoginRequest } from "../types";
 
 export default function Login() {
   const router = useRouter();
-  const [username, setusername] = useState("");
+  const [username, setUsername] = useState("");
   const [error, setError] = useState(" ");
   const [loading, setLoading] = useState(false);
 
@@ -17,13 +17,27 @@ export default function Login() {
 
   const OnChangeLoginHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setError("");
-    let value = e.target.value;
-    setusername(value);
+    let value = e.target.value.replace(/\s/g, "");
+    setUsername(value);
+
+    const regex = /^[a-z0-9A-Z]/;
+    if (regex.test(value)) {
+      e.target.value.length <= 4
+        ? setError("username not less than 5 characters")
+        : setError("");
+    } else {
+      setError("No specials characters at beginning");
+    }
+
+    if (e.target.value.length === 0) {
+      setError("");
+    }
   };
 
   const onLoginHandler = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
+
     try {
       const userId = localStorage.getItem("userId"); // this should be in the cookies
       const loginDetails: ILoginRequest = {
@@ -71,6 +85,7 @@ export default function Login() {
 
             <button
               type="submit"
+              // disabled={error !== " "}
               className={`text-center py-3 w-1/2 m-auto mt-14 block cursor-pointer px-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 lg:-right-32
                text-base text-white font-bold hover:from-tourquise hover:to-tourquise ${
                  loading && "disabled:hover"

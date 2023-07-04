@@ -86,7 +86,6 @@ export default function Home() {
 
 // todo
 // do quiz selection base on categories ( request will retrive with it),
-// session do expire set up for token retrival
 // show category bar or tooltips
 // a timer exist
 // Show score board
@@ -96,4 +95,4 @@ export default function Home() {
 // add instruction page with select for difficulty level
 // support leave a star, link to github
 
-// install litter
+// install eslint
