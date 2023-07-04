@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { CgSpinner } from "react-icons/cg";
-import { setUser, signup } from "../services/user";
+import { setUser} from "../services/user";
 
 export default function () {
   const router = useRouter();
@@ -22,32 +22,32 @@ export default function () {
     username.length >= 0 ? setTouched(true) : setTouched(false);
   };
 
-  const onSignupHandler = async (e: FormEvent) => {
-    e.preventDefault();
-    let payload = {
-      username,
-      createdDate: Date(),
-      category: [],
-      image: "images/avatar/baddie.png",
-    };
+  // const onSignupHandler = async (e: FormEvent) => {
+  //   e.preventDefault();
+  //   let payload = {
+  //     username,
+  //     createdDate: Date(),
+  //     category: [],
+  //     image: "images/avatar/baddie.png",
+  //   };
 
-    try {
-      setLoading(true);
-      let response = await signup(payload);
-      // get the data
-      let data = await response.json();
-      if (data.message) {
-        setUser(data.quizuser);
-        router.push("/");
-      } else {
-        setLoading(false);
-        setSignUpError(data.error);
-      }
-    } catch (error) {
-      setLoading(false);
-      setSignUpError("Try Again");
-    }
-  };
+  //   try {
+  //     setLoading(true);
+  //     let response = await signup(payload);
+  //     // get the data
+  //     let data = await response.json();
+  //     if (data.message) {
+  //       setUser(data.quizuser);
+  //       router.push("/");
+  //     } else {
+  //       setLoading(false);
+  //       setSignUpError(data.error);
+  //     }
+  //   } catch (error) {
+  //     setLoading(false);
+  //     setSignUpError("Try Again");
+  //   }
+  // };
 
   return (
     <div className="mb-12 lg:mb-0  text-center">
@@ -58,7 +58,7 @@ export default function () {
         </span>
       </h1>
       <div className="flex justify-center items-center gap-x-2">
-        <form onSubmit={onSignupHandler} className="relative">
+        <form  className="relative">
           <input
             type="text"
             placeholder="What should we call you? sandy"
