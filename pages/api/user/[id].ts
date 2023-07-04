@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import User from "../../../models/user";
 import { ICategory } from "../../../types";
-import connectMongo from "../../../utils/connectMongo";
+import { connectToDB } from "../../../utils/connectMongo";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
@@ -20,7 +20,7 @@ async function getUserProfile(req: NextApiRequest, res: NextApiResponse) {
     query: { id },
   } = req;
   try {
-    await connectMongo();
+    await connectToDB();
     let user = await User.findById(id);
     return res.status(200).json({
       data: JSON.parse(JSON.stringify(user)),
@@ -40,7 +40,7 @@ async function updateUserProfile(req: NextApiRequest, res: NextApiResponse) {
     query: { id },
   } = req;
   try {
-    await connectMongo();
+    await connectToDB();
     if (!req.body) {
       return res.status(400).json({
         error: "no request body",
@@ -60,7 +60,6 @@ async function updateUserProfile(req: NextApiRequest, res: NextApiResponse) {
         existingItem.attempts = existingItem.attempts + 1;
         existingItem.recentScore = req.body.score;
       } else {
-
         user.category.push(req.body);
       }
     } else if (req.body.image) {
@@ -68,7 +67,6 @@ async function updateUserProfile(req: NextApiRequest, res: NextApiResponse) {
     }
     let updatedUser = await user.save();
     if (updatedUser) {
-     
       res.status(200).json({ message: "successful", updatedUser });
     } else {
       return res.status(400).json({

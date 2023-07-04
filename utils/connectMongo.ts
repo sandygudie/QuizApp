@@ -1,10 +1,24 @@
 import mongoose from "mongoose";
-const MONGODB_URI = process.env.NEXT_PUBLIC_MONGODB_URI;
+mongoose.Promise = global.Promise;
+const db = {
+  mongoose,
+};
 
-if (!MONGODB_URI) {
-    throw new Error("Define the MONGODB_URI environmental variable");
-  }
- 
-const connectMongo = async () => mongoose.connect(MONGODB_URI);
+const MONGODB_URI: string | any = process.env.NEXT_PUBLIC_MONGODB_URI;
 
-export default connectMongo;
+const connectToDB = async () => {
+  await db.mongoose
+    .connect(MONGODB_URI)
+    .then(() => {
+      console.log("Database connected successfully");
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+const disconnectDB = async () => {
+  await db.mongoose.disconnect();
+};
+
+export { connectToDB, disconnectDB };

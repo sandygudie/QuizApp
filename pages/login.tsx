@@ -4,12 +4,11 @@ import { login, logOut, setUser } from "../services/user";
 import { CgSpinner } from "react-icons/cg";
 
 import { ILoginRequest } from "../types";
-import { da } from "date-fns/locale";
 
 export default function Login() {
   const router = useRouter();
   const [username, setusername] = useState("");
-  const [loginError, setLoginError] = useState(" ");
+  const [error, setError] = useState(" ");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -17,7 +16,7 @@ export default function Login() {
   }, []);
 
   const OnChangeLoginHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setLoginError("");
+    setError("");
     let value = e.target.value;
     setusername(value);
   };
@@ -34,7 +33,7 @@ export default function Login() {
       let response = await login(loginDetails);
       if (!response.ok) {
         return response.json().then((response) => {
-          setLoginError(response.message);
+          setError(response.message);
         });
       }
       const data = await response.json();
@@ -63,9 +62,9 @@ export default function Login() {
                 value={username}
                 required
               />
-              {loginError && (
+              {error && (
                 <p className="text-red absolute mt-1 top-50 text-[0.7rem] italic">
-                  {loginError}
+                  {error}
                 </p>
               )}
             </div>
@@ -80,7 +79,7 @@ export default function Login() {
               {loading ? (
                 <CgSpinner className="animate-spin block m-auto w-6 h-6" />
               ) : (
-                " Continue"
+                "Continue"
               )}
             </button>
           </form>

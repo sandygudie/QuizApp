@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import User from "../../models/user";
-import connectMongo from "../../utils/connectMongo";
+import {connectToDB } from "../../utils/connectMongo";
 import { successResponse, errorResponse } from "../../utils/responseHandler";
 import loginValidation from "../../utils/validator";
 /**
@@ -17,7 +17,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 }
 async function login(req: NextApiRequest, res: NextApiResponse) {
   try {
-    await connectMongo();
+    await connectToDB();
     const { username, userId } = req.body;
     const { error } = loginValidation(req.body);
     if (error) return errorResponse(res, 400, error.details[0].message);
