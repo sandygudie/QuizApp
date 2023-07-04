@@ -95,3 +95,5 @@ export default function Home() {
 
 // add instruction page with select for difficulty level
 // support leave a star, link to github
+
+// install litter

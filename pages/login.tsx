@@ -24,7 +24,7 @@ export default function Login() {
 
   const onLoginHandler = async (e: FormEvent) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       const userId = localStorage.getItem("userId"); // this should be in the cookies
       const loginDetails: ILoginRequest = {
@@ -41,7 +41,10 @@ export default function Login() {
       setUser(data.data);
       router.push("/");
     } catch (error) {
+      setLoading(false);
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
   return (
