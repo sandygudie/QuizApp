@@ -2,6 +2,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { getUser, setUser, updateUserData } from "../../services/user";
 import ProgressBar from "../ProgressBar";
+import { useRouter } from 'next/router'
 
 interface IProps {
   correctAnswerCount: number;
@@ -9,6 +10,8 @@ interface IProps {
 }
 
 export default function DisplayScore({ correctAnswerCount, category }: IProps) {
+  const router = useRouter()
+
   let user_id = getUser()?._id;
   const [error, setError] = useState(" ");
   useEffect(() => {
@@ -41,9 +44,9 @@ export default function DisplayScore({ correctAnswerCount, category }: IProps) {
       <ProgressBar width={250} score={correctAnswerCount * 10} />
 
       <div className="flex w-full mt-8 font-bold items-center justify-between">
-        <Link className="p-3 px-6 rounded-lg bg-primary " href={"/"}>
+        <button onClick={() => router.reload()} className="p-3 px-6 rounded-lg bg-primary" >
           Try Again
-        </Link>
+        </button>
         <Link className="p-3 px-6 rounded-lg bg-primary opacity-20" href="#">
           Leader Board
         </Link>

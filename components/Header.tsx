@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { BiHelpCircle } from "react-icons/bi";
+import { GiTrophyCup} from "react-icons/gi";
 import { IUser } from "../types";
 import Tippy from "@tippyjs/react";
+
 
 interface HeaderProps {
   profile: IUser;
@@ -41,15 +43,18 @@ function Header({ profile }: HeaderProps) {
             {profile?.username}
           </span>
         </div>
-        <div className="flex items-center justify-between w-32 flex text-center cursor-pointer">
+        <div className="flex items-center justify-between  gap-4 flex text-center cursor-pointer">
           <JSXContent />
-
+<Link href={"/leaderboard"} 
+className="text-base font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-6 py-2 rounded-lg">
+  <p> <GiTrophyCup className=" text-2xl inline"/> </p>
+</Link>
           <Link
             href="/profile"
-            className="text-base font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-4 py-2 rounded-lg"
+            className="text-base font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-4 py-2.5 rounded-lg"
           >
             {" "}
-            profile
+            Profile
           </Link>
         </div>
       </div>
