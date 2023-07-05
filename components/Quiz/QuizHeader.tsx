@@ -1,16 +1,16 @@
-import router, { useRouter } from "next/router";
-import React, { useState } from "react";
+import router from "next/router";
+import React from "react";
 import { BsInfoCircle } from "react-icons/bs";
 import { TiArrowBack } from "react-icons/ti";
 
-interface IQuizProps {
+interface IProps {
   category: string | any;
   timer: number;
-  goBack: () => void;
+  pauseQuiz: () => void;
   scoreStatus: "correct" | "wrong" | "timeup" | "finalscore" | "";
 }
 
-function Display({ goBack, timer, scoreStatus, category }: IQuizProps) {
+function QuizHeader({ pauseQuiz, timer, scoreStatus, category }: IProps) {
   return (
     <>
       <div className="shadow-xl">
@@ -18,13 +18,13 @@ function Display({ goBack, timer, scoreStatus, category }: IQuizProps) {
           <div className="flex items-center w-full md:w-3/4 lg:w-1/2">
             <TiArrowBack
               onClick={() =>
-                scoreStatus === "finalscore" ? router.push("/") : goBack()
+                scoreStatus === "finalscore" ? router.push("/") : pauseQuiz()
               }
-              className={`text-4xl cursor-pointer`}
+              className="text-4xl cursor-pointer"
             />
 
             <div className="mx-4 lg:mx-8 text-lg md:text-xl">
-              <span> {category} Quiz</span>
+              <span>Quiz: {category} </span>
             </div>
             <div
               className={`${
@@ -50,4 +50,4 @@ function Display({ goBack, timer, scoreStatus, category }: IQuizProps) {
   );
 }
 
-export default Display;
+export default QuizHeader;

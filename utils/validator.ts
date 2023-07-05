@@ -1,6 +1,6 @@
 const Joi = require("joi");
 
-function loginValidation(data: {}) {
+export function loginValidation(data: {}) {
   const schema = Joi.object({
     username: Joi.string()
       .alphanum()
@@ -13,10 +13,16 @@ function loginValidation(data: {}) {
       then: Joi.string().trim(),
       otherwise: Joi.any(),
     }),
-    // .rule({ message: 'Number must be between 1 and 10' })
-    // .messages({ 'any.only': '{{#label}} does not match' }),
   });
   return schema.validate(data);
 }
 
-export default loginValidation;
+export function categoryValidation(data: {}) {
+  
+  const schema = Joi.object({
+    name: Joi.string().required().trim().label("name"),
+    score: Joi.number().required().label("score"),
+    recentScore: Joi.number().required().label("recent score"),
+  });
+  return schema.validate(data);
+}

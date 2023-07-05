@@ -23,8 +23,14 @@ export const getUser = () => {
     return JSON.parse(user);
   }
 };
-
-export const updateUser = async (userid: string | any, payload: any) => {
+export const getCurrentuser = async (userId:string) => {
+  let response = await fetch(`/api/user/${userId}`)
+  return response;
+};
+export const updateUserData = async (
+  userid: string | any,
+  payload: any
+) => {
   let res = await fetch(`/api/user/${userid}`, {
     method: "PATCH",
     headers: {

@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import User from "../../models/user";
-import {connectToDB } from "../../utils/connectMongo";
+import { connectToDB } from "../../utils/connectMongo";
 import { successResponse, errorResponse } from "../../utils/responseHandler";
-import loginValidation from "../../utils/validator";
+import { loginValidation} from "../../utils/validator";
 /**
  * @param {import('next').NextApiRequest} req
  * @param {import('next').NextApiResponse} res

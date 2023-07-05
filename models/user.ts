@@ -1,6 +1,6 @@
-import mongoose, { Schema, model, models } from "mongoose";
+import mongoose from "mongoose";
 
-const userSchema = new Schema(
+export const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -10,8 +10,11 @@ const userSchema = new Schema(
     },
     category: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Category",
+        name: String,
+        attempts: Number,
+        score: Number,
+        recentScore: Number,
+        updatedDate: Date,
       },
     ],
     image: {
@@ -29,5 +32,6 @@ userSchema.set("toJSON", {
   },
 });
 
-export const User = models.User || model("User", userSchema);
+const User = mongoose.models.User || mongoose.model("User", userSchema);
+
 export default User;

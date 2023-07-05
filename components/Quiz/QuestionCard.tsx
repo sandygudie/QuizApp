@@ -4,24 +4,24 @@ import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
 
 interface IQuizProps {
   scoreStatus: "correct" | "wrong" | "timeup" | "finalscore" | "";
-  correctAnswer: number;
-  correctAnswerHandler: (correctAnswer: number) => void;
-  quiz: IQuestion;
-  index: number;
-  quizTimingHandler: (quiz: boolean) => void;
-  timer: number;
   ScoreStatusHandler: (
     scoreStatus: "correct" | "wrong" | "timeup" | "finalscore" | ""
   ) => void;
+  correctAnswerCount: number;
+  correctAnswerHandler: (correctAnswer: number) => void;
+  quiz: IQuestion;
+  index: number;
+  stopQuiz: () => void;
+  timer: number;
   nextQuestion: (timer: number) => void;
 }
 
 export default function QuestionCard({
   quiz,
   scoreStatus,
-  correctAnswer,
+  correctAnswerCount,
   index,
-  quizTimingHandler,
+  stopQuiz,
   timer,
   correctAnswerHandler,
   ScoreStatusHandler,
@@ -33,12 +33,12 @@ export default function QuestionCard({
   const [selectedIndex, setSelectedIndex] = useState<number>();
 
   useEffect(() => {
-    let newArray = optionsAnswers.concat(quiz.correct_answer);
-    let randomizedArray = shuffleArray(newArray);
-    setOptionsAnswers(randomizedArray);
+    let optionList = optionsAnswers.concat(quiz.correct_answer);
+    let randomizedOptions = shuffleQuiz(optionList);
+    setOptionsAnswers(randomizedOptions);
   }, []);
 
-  const shuffleArray = (array: []) => {
+  const shuffleQuiz = (array: []) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       const temp = array[i];
@@ -54,7 +54,7 @@ export default function QuestionCard({
       event.currentTarget.style.color = "white";
       setSelectedIndex(index);
       ScoreStatusHandler("correct");
-      correctAnswerHandler(correctAnswer + 1);
+      correctAnswerHandler(correctAnswerCount + 1);
       const audioElement = new Audio("images/correct-answer.mp3");
       audioElement.play();
     } else {
@@ -65,7 +65,7 @@ export default function QuestionCard({
       const audioElement = new Audio("images/wrong-answer.wav");
       audioElement.play();
     }
-    quizTimingHandler(false);
+    stopQuiz();
     setTimeout(() => {
       nextQuestion(6);
     }, 3000);
@@ -96,8 +96,8 @@ export default function QuestionCard({
               onChange={(e) => onChangeValue(index, e)}
               key={index}
               htmlFor={options}
-              className={`px-3 py-2 bg-primary cursor-pointer
-               text-base md:text-lg font-bold my-5 rounded-full 
+              className={`px-3 py-2 bg-light-secondary cursor-pointer
+               text-base md:text-lg font-bold my-5 rounded-xl 
                 block ${
                   scoreStatus === "" &&
                   timer > 0 &&
@@ -135,13 +135,3 @@ export default function QuestionCard({
     </div>
   );
 }
-
-// category: "Entertainment: Video Games";
-// correct_answer: "Ossan";
-// difficulty: "medium";
-// incorrect_answers: (3)[("Jumpman", "Mr. Video", "Mario")];
-// question: "What name did &quot;Mario&quot;, from &quot;Super Mario Brothers&quot;, originally have?";
-// type: "multiple";
-// fix the question issues xheck urlencoded
-// add animation
-// include sound

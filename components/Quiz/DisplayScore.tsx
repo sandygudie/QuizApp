@@ -1,34 +1,30 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { getUser, setUser, updateUser } from "../../services/user";
+import { getUser, setUser, updateUserData } from "../../services/user";
 import ProgressBar from "../ProgressBar";
 
-interface IDisplayScoreProps {
-  correctAnswer: number;
+interface IProps {
+  correctAnswerCount: number;
   category: string | any;
 }
 
-export default function DisplayScore({
-  correctAnswer,
-  category,
-}: IDisplayScoreProps) {
+export default function DisplayScore({ correctAnswerCount, category }: IProps) {
   let user_id = getUser()?._id;
   const [error, setError] = useState(" ");
   useEffect(() => {
-    updatecategory();
+    updateQuizScore();
   }, []);
 
-  const updatecategory = async () => {
+  const updateQuizScore = async () => {
     let payload = {
       name: category,
-      score: correctAnswer * 10,
-      attempts: 1,
-      recentScore: correctAnswer * 10,
-      lastPlayedDate: Date(),
+      score: correctAnswerCount * 10,
+      recentScore: correctAnswerCount * 10,
     };
     try {
-      let response = await updateUser(user_id, payload);
+      let response = await updateUserData(user_id, payload);
       let data = await response.json();
+
       if (data.updatedUser) {
         setUser(data.updatedUser);
       }
@@ -42,7 +38,7 @@ export default function DisplayScore({
         {" "}
         Your Score
       </p>
-      <ProgressBar width={250} score={correctAnswer * 10} />
+      <ProgressBar width={250} score={correctAnswerCount * 10} />
 
       <div className="flex w-full mt-8 font-bold items-center justify-between">
         <Link className="p-3 px-6 rounded-lg bg-primary " href={"/"}>

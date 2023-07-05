@@ -28,7 +28,7 @@ export interface ICategory {
   score: number;
   attempts: number,
   recentScore: number,
-  lastPlayedDate: string,
+ updatedDate: Date,
 }
 
 export interface IAvatar{

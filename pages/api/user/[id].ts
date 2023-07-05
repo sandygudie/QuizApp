@@ -2,6 +2,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import User from "../../../models/user";
 import { ICategory } from "../../../types";
 import { connectToDB } from "../../../utils/connectMongo";
+import { categoryValidation } from "../../../utils/validator";
+import { errorResponse } from "../../../utils/responseHandler";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
@@ -19,26 +21,33 @@ async function getUserProfile(req: NextApiRequest, res: NextApiResponse) {
   const {
     query: { id },
   } = req;
+
   try {
     await connectToDB();
     let user = await User.findById(id);
+    if (!user) {
+      return res.status(400).json({
+        message: "User does not exist",
+        success: false,
+      });
+    }
+
     return res.status(200).json({
       data: JSON.parse(JSON.stringify(user)),
       success: true,
     });
   } catch (error) {
-    return res.json({
-      message: error,
+    return res.status(400).json({
+      message: error || "bad Request",
       success: false,
     });
   }
 }
 
-// add and update user category
+
 async function updateUserProfile(req: NextApiRequest, res: NextApiResponse) {
-  const {
-    query: { id },
-  } = req;
+  const { id }: string | any = req.query;
+
   try {
     await connectToDB();
     if (!req.body) {
@@ -46,21 +55,37 @@ async function updateUserProfile(req: NextApiRequest, res: NextApiResponse) {
         error: "no request body",
       });
     }
+   
+
     let user = await User.findById(id);
+    if (!user) {
+      return res
+        .status(400)
+        .json({ message: "User does not exist", success: false });
+    }
+
 
     if (req.body.name) {
-      let existingItem: ICategory = user.category.find(
-        (item: ICategory) => item.name === req.body.name.trim()
+      const { error } = categoryValidation(req.body);
+      if (error) return errorResponse(res, 400, error.details[0].message);
+      
+      const existingCategory = user.category.find(
+        (ele: ICategory) => ele.name === req.body.name
       );
-      if (existingItem) {
-        existingItem.score =
-          req.body.score > existingItem.score
+      if (existingCategory) {
+        (existingCategory.score =
+          req.body.score > existingCategory.score
             ? req.body.score
-            : existingItem.score;
-        existingItem.attempts = existingItem.attempts + 1;
-        existingItem.recentScore = req.body.score;
+            : existingCategory.score),
+          (existingCategory.attempts = existingCategory.attempts + 1);
+        existingCategory.recentScore = req.body.recentScore;
+        existingCategory.updatedDate = Date.now();
       } else {
-        user.category.push(req.body);
+        user.category.push({
+          ...req.body,
+          attempts: 1,
+          updatedDate: Date.now(),
+        });
       }
     } else if (req.body.image) {
       user.image = req.body.image;
@@ -70,10 +95,10 @@ async function updateUserProfile(req: NextApiRequest, res: NextApiResponse) {
       res.status(200).json({ message: "successful", updatedUser });
     } else {
       return res.status(400).json({
-        error: "request not completed",
+        error: "Request not completed",
       });
     }
   } catch (error) {
-    res.json(error);
+    return res.status(400).json({ message: error || "Bad Request" });
   }
 }

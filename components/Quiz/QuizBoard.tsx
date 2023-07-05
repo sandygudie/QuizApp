@@ -3,7 +3,6 @@ import { IQuestion } from "../../types";
 import QuizHeader from "./QuizHeader";
 import DisplayScore from "./DisplayScore";
 import QuestionCard from "./QuestionCard";
-import Score from "./Score";
 import { useRouter } from "next/router";
 import Modal from "../Modal";
 import CloseQuiz from "./CloseQuiz";
@@ -14,30 +13,30 @@ interface IQuizBoardProps {
 }
 
 export default function QuizBoard({ quizQuestions }: IQuizBoardProps) {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const router = useRouter();
 
+  const data = router.query;
+
+  const { category } = data;
   let audioElement: HTMLAudioElement;
+
+  const [isOpenModal, setIsOpenModal] = useState(false);
   let [timer, setTimer] = useState(10);
-  const [correctAnswer, setCorrectAnswer] = useState(0);
-  let [questionAmount, setQuestionAmount] = useState(0);
-  const [quizTiming, setQuizTiming] = useState(true);
+  const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
+  let [questionCounter, setQuestionCounter] = useState(0);
+  const [status, setStatus] = useState<"running" | "pause" | "stop">("running");
   const [scoreStatus, setScoreStatus] = useState<
     "correct" | "wrong" | "timeup" | "finalscore" | ""
   >("");
 
-  const [status, setStatus] = useState("running");
-  const router = useRouter();
-  const data = router.query;
-  const { category } = data;
-
   useEffect(() => {
     let interval: string | number | NodeJS.Timeout | undefined;
     if (quizQuestions.length) {
-      if (quizTiming && status === "running") {
+      if (status === "running") {
         interval = setInterval(() => {
           // time up
           if (timer === 1) {
-            setQuizTiming(false); //stop timing
+            setStatus("stop");
             setScoreStatus("timeup");
             audioElement = new Audio("images/time-up.wav");
             audioElement.play();
@@ -56,13 +55,10 @@ export default function QuizBoard({ quizQuestions }: IQuizBoardProps) {
       setTimer(0);
     }
     return () => clearInterval(interval);
-  }, [quizTiming, timer, status]);
+  }, [timer, status]);
 
-  const quizTimingHandler = (quizTiming: boolean) => {
-    setQuizTiming(quizTiming);
-  };
-  const correctAnswerHandler = (correctAnswer: number) => {
-    setCorrectAnswer(correctAnswer);
+  const correctAnswerHandler = (correctAnswerCount: number) => {
+    setCorrectAnswerCount(correctAnswerCount);
   };
 
   const ScoreStatusHandler = (
@@ -70,39 +66,55 @@ export default function QuizBoard({ quizQuestions }: IQuizBoardProps) {
   ) => setScoreStatus(scoreStatus);
 
   const nextQuestion = () => {
-    setQuestionAmount((questionAmount = questionAmount + 1));
-    if (questionAmount < quizQuestions.length) {
+    setQuestionCounter((questionCounter = questionCounter + 1));
+    if (questionCounter < quizQuestions.length) {
       setTimer(10);
-      setQuizTiming(true);
+      setStatus("running");
       setScoreStatus("");
     } else {
-      setQuizTiming(true);
+      setStatus("stop");
       setTimer(0);
       setScoreStatus("finalscore");
     }
   };
 
-  const goBack = () => {
+  const pauseQuiz = () => {
     setIsOpenModal(true);
     setStatus("pause");
   };
 
-  const handleStatus = () => {
+  const startQuiz = () => {
     setIsOpenModal(false);
     setStatus("running");
   };
 
+  const stopQuiz = () => {
+    setStatus("stop");
+  };
+
+  const TimeUpComponent = () => {
+    return (
+      <div className="z-50 font-bold absolute top-2/4 left-2/4 translate-x-2/4 translate-y-2/4">
+        <p className="swirl-in-fwd text-center text-7xl md:text-[10em] text-red">
+          Time Up
+        </p>
+      </div>
+    );
+  };
   return (
     <>
       <div className={`${isOpenModal && "opacity-20"}`}>
         <QuizHeader
           category={category}
-          goBack={goBack}
+          pauseQuiz={pauseQuiz}
           timer={timer}
           scoreStatus={scoreStatus}
         />
         {scoreStatus === "finalscore" ? (
-          <DisplayScore category={category} correctAnswer={correctAnswer} />
+          <DisplayScore
+            category={category}
+            correctAnswerCount={correctAnswerCount}
+          />
         ) : (
           <>
             <div className="z-10 w-full md:w-[30rem] lg:w-[35rem] absolute top-2/4 left-2/4 translate-x-2/4 translate-y-2/4 mt-10">
@@ -116,14 +128,14 @@ export default function QuizBoard({ quizQuestions }: IQuizBoardProps) {
                 <>
                   {quizQuestions.map((list, i) => {
                     return (
-                      i === questionAmount && (
+                      i === questionCounter && (
                         <QuestionCard
                           scoreStatus={scoreStatus}
-                          correctAnswer={correctAnswer}
+                          correctAnswerCount={correctAnswerCount}
                           quiz={list}
                           index={i}
                           key={i}
-                          quizTimingHandler={quizTimingHandler}
+                          stopQuiz={stopQuiz}
                           timer={timer}
                           ScoreStatusHandler={ScoreStatusHandler}
                           nextQuestion={nextQuestion}
@@ -131,19 +143,17 @@ export default function QuizBoard({ quizQuestions }: IQuizBoardProps) {
                         />
                       )
                     );
-                  })}{" "}
+                  })}
                 </>
               )}
             </div>
-            {scoreStatus !== "" && <Score scoreStatus={scoreStatus} />}
+            {scoreStatus === "timeup" && <TimeUpComponent />}
           </>
         )}
       </div>
       {isOpenModal && (
         <Modal
-          children={
-            <CloseQuiz handleStatus={handleStatus} category={category} />
-          }
+          children={<CloseQuiz startQuiz={startQuiz} category={category} />}
         />
       )}
     </>

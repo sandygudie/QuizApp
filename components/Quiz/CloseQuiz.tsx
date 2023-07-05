@@ -3,15 +3,15 @@ import router from "next/router";
 
 interface IProps {
   category: string | any;
-  handleStatus: () => void;
+  startQuiz: () => void;
 }
 
-function CloseQuiz({ category, handleStatus }: IProps) {
+function CloseQuiz({ category, startQuiz }: IProps) {
   const closeQuiz = () => {
     router.push("/");
   };
-  const cancelClose = () => {
-    handleStatus();
+  const continueQuiz = () => {
+    startQuiz();
   };
 
   return (
@@ -34,7 +34,7 @@ function CloseQuiz({ category, handleStatus }: IProps) {
         <button
           className="p-3 px-6 w-40 text-white font-bold hover:bg-primary/10 hover:text-secondary duration-300 px-4 rounded-md bg-primary"
           type="button"
-          onClick={cancelClose}
+          onClick={continueQuiz}
         >
           Cancel
         </button>

@@ -23,12 +23,12 @@ export default function QuizDetails({ item }: IProps) {
         </p>
         <p>
           {" "}
-          Last Played Score: <span className="font-bold">{item.recentScore}%</span>
+          Recent Score: <span className="font-bold">{item.recentScore}%</span>
         </p>
         <p>
           {" "}
           Last Played :{" "}
-          <span className="font-bold">{new Date(item.lastPlayedDate).toUTCString()}</span>
+          <span className="font-bold">{new Date(item.updatedDate).toUTCString()}</span>
         </p>
       </div>
     </div>

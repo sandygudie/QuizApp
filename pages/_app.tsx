@@ -1,11 +1,29 @@
-import '../styles/global.css'
-import { AppProps } from 'next/app'
+import "../styles/global.css";
+import { AppProps } from "next/app";
+import { getCurrentuser } from "../services/user";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  const router = useRouter();
+
+  useEffect(() => {
+    currentUserHandler();
+  }, []);
+  const currentUserHandler = async () => {
+    const userId = localStorage.getItem("userId");
+    if (userId) {
+      let response = await getCurrentuser(userId);
+      if (!response.ok) {
+        localStorage.removeItem("userId")
+        router.push("/login");
+      
+      }
+    }
+  };
+
+  return <Component {...pageProps} />;
 }
-
-
 
 // todo
 // the profile page does not log out users even -

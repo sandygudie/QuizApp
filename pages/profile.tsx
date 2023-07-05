@@ -4,7 +4,7 @@ import { FiLogOut } from "react-icons/fi";
 import { RiAddCircleFill } from "react-icons/ri";
 import ProgressBar from "../components/ProgressBar";
 import { avatars } from "../utils/avatar";
-import { getUser, logOut, setUser, updateUser } from "../services/user";
+import { getUser, logOut, setUser, updateUserData } from "../services/user";
 import { ICategory, IUser } from "../types";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
@@ -61,16 +61,14 @@ function Profile() {
     setLoadingImage(true);
 
     try {
-      let res = await updateUser(profile?._id, { image });
+      let res = await updateUserData(profile?._id, { image });
       let data = await res.json();
       if (data.message) {
         setLoadingImage(false);
         setSelectedImage(image);
-        notifyToast("Image saved!");
+        notifyToast("Image updated!");
         setUser(data.updatedUser);
-      } else {
-        notifyToast("Try Again");
-      }
+      } 
     } catch (error) {
       notifyToast("Request Failed");
     }
@@ -82,15 +80,15 @@ function Profile() {
     <>
       <div
         className="md:absolute w-full md:w-5/6 top-2/4 left-2/4
-        md:translate-x-2/4 md:translate-y-2/4 h-screen md:h-[90vh]"
+        md:translate-x-2/4 md:translate-y-2/4 h-screen "
       >
         <div className="h-full py-8 bg-light-secondary text-center relative rounded-xl">
           <div className="flex items-center justify-between mx-6 ">
-            <span
-             
-              className=" text-2xl fill-white relative"
-            >
-              <TiArrowBack  onClick={() => router.push("/")} className="cursor-pointer inline" />
+            <span className=" text-2xl fill-white relative">
+              <TiArrowBack
+                onClick={() => router.push("/")}
+                className="cursor-pointer inline"
+              />
             </span>
 
             <span
@@ -167,12 +165,13 @@ function Profile() {
                   </p>
                   <div className="flex flex-wrap items-center justify-center gap-x-2">
                     {profile?.category.map((item: ICategory, index: number) => (
-                      <>
+                      <div  key={item._id}>
                         <div
+                        
                           onClick={() => {
                             setOpenModal(true), setSelectedIndex(index);
                           }}
-                          key={item._id}
+                         
                           className="text-center cursor-pointer hover:opacity-40"
                         >
                           <p className="font-bold md:text-lg lg:text-xl mb-2">
@@ -186,7 +185,7 @@ function Profile() {
                             handleCloseModal={handleCloseModal}
                           />
                         )}
-                      </>
+                      </div>
                     ))}
                   </div>
                 </>
@@ -207,7 +206,4 @@ function Profile() {
 
 export default Profile;
 
-// Stats in each category
-// Share results
-// add background game environemrnt
-//
+
