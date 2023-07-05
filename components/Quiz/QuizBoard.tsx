@@ -152,9 +152,9 @@ export default function QuizBoard({ quizQuestions }: IQuizBoardProps) {
         )}
       </div>
       {isOpenModal && (
-        <Modal
-          children={<CloseQuiz startQuiz={startQuiz} category={category} />}
-        />
+        <Modal>
+          <CloseQuiz startQuiz={startQuiz} category={category} />
+        </Modal>
       )}
     </>
   );

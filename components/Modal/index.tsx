@@ -5,7 +5,7 @@ interface IModalProps {
   children: any;
 }
 
-function index({ children, handleCloseModal }: IModalProps) {
+function Index({ children, handleCloseModal }: IModalProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -30,4 +30,4 @@ function index({ children, handleCloseModal }: IModalProps) {
   );
 }
 
-export default index;
+export default Index;

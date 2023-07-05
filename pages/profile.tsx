@@ -68,7 +68,7 @@ function Profile() {
         setSelectedImage(image);
         notifyToast("Image updated!");
         setUser(data.updatedUser);
-      } 
+      }
     } catch (error) {
       notifyToast("Request Failed");
     }
@@ -129,6 +129,7 @@ function Profile() {
                     <div ref={ref} className="flex gap-4 flex-wrap">
                       {avatars.map((item) => (
                         <img
+                        alt="avatar"
                           src={item.image}
                           key={item.id}
                           className="w-12 cursor-pointer rounded-full hover:scale-110"
@@ -165,13 +166,11 @@ function Profile() {
                   </p>
                   <div className="flex flex-wrap items-center justify-center gap-x-2">
                     {profile?.category.map((item: ICategory, index: number) => (
-                      <div  key={item._id}>
+                      <div key={item._id}>
                         <div
-                        
                           onClick={() => {
                             setOpenModal(true), setSelectedIndex(index);
                           }}
-                         
                           className="text-center cursor-pointer hover:opacity-40"
                         >
                           <p className="font-bold md:text-lg lg:text-xl mb-2">
@@ -180,10 +179,10 @@ function Profile() {
                           <ProgressBar width={160} score={item.score} />
                         </div>
                         {isOpenModal && selectedIndex === index && (
-                          <Modal
-                            children={<QuizDetails item={item} />}
-                            handleCloseModal={handleCloseModal}
-                          />
+                          <Modal handleCloseModal={handleCloseModal}>
+                            {" "}
+                            <QuizDetails item={item} />
+                          </Modal>
                         )}
                       </div>
                     ))}
@@ -205,5 +204,3 @@ function Profile() {
 }
 
 export default Profile;
-
-
