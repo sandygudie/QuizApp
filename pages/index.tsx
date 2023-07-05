@@ -57,23 +57,23 @@ export default function Home() {
       </Head>
       <div className="w-full">
         <Header profile={profile} />
-        <div className="xl:max-w-7xl p-2 text-center m-auto mt-8 flex justify-center items-center h-[90vh] flex-col">
-          <h1 className="font-bold text-xl md:text-[2em] my-4">Take Quiz</h1>
+        <div className=" z-10 xl:max-w-7xl text-center m-auto mt-8 flex justify-center items-center h-[90vh] flex-col">
+          <h1 className="font-bold text-xl md:text-[2em] my-2 md:my-4">Take Quiz</h1>
 
-          <div className="my-8 flex justify-center flex-wrap gap-10">
+          <div className="my-4 md:my-8 flex justify-center flex-wrap  gap-2 sm:gap-4 md:gap-10">
             {Categories.map((item) => {
               return (
                 <button
                   aria-label={item.name}
                   key={item.id}
                   onClick={() => getQuiz(item.name, item.id)}
-                  className="text-white h-64 md:h-auto flex flex-col justify-center items-center bg-light-secondary rounded-lg w-36 p-4 md:p-12 md:w-80
+                  className="text-white w-32 h-28  md:h-40 md:w-56 lg:w-72 lg:h-48 flex flex-col justify-center items-center bg-light-secondary rounded-lg p-4 md:p-12
           cursor-pointer text-center hover:scale-125 hover:bg-gradient-to-r from-primary to-pink-500 hover:text-tourquise hover:border-none"
                 >
-                  <p className="font-bold text-lg md:text-2xl mb-2">
+                  <p className="font-bold text-base sm:text-lg md:text-2xl mb-2">
                     {item.name}
                   </p>
-                  <item.Icon className="text-tourquise text-5xl md:text-6xl md:m-auto" />
+                  <item.Icon className="text-tourquise text-xl sm:text-4xl md:text-6xl m-0" />
                 </button>
               );
             })}

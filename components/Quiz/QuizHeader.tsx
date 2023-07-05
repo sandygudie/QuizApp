@@ -14,16 +14,16 @@ function QuizHeader({ pauseQuiz, timer, scoreStatus, category }: IProps) {
   return (
     <>
       <div className="shadow-xl">
-        <div className="xl:max-w-7xl m-auto flex font-bold text-slate-400 justify-between items-center w-full px-2 lg:px-4 lg:pr-20 py-6">
+        <div className="xl:max-w-7xl m-auto flex font-bold text-slate-400 justify-between items-center w-full px-2 lg:px-4 lg:pr-20 py-2 md:py-6">
           <div className="flex items-center w-full md:w-3/4 lg:w-1/2">
             <TiArrowBack
               onClick={() =>
                 scoreStatus === "finalscore" ? router.push("/") : pauseQuiz()
               }
-              className="text-4xl cursor-pointer"
+              className="text-xl md:text-4xl cursor-pointer"
             />
 
-            <div className="mx-4 lg:mx-8 text-lg md:text-xl">
+            <div className="mx-4 lg:mx-8 text-base md:text-xl">
               <span>Quiz: {category} </span>
             </div>
             <div
@@ -39,7 +39,7 @@ function QuizHeader({ pauseQuiz, timer, scoreStatus, category }: IProps) {
           <div
             className={`${
               scoreStatus === "finalscore" && "hidden sr-only"
-            } flex items-center w-48 justify-end text-xl md:text-2xl text-primary font-bold`}
+            } block md:flex items-center  justify-end text-lg md:text-2xl text-primary font-bold`}
           >
             <span className="">Timer: 00:</span>
             {timer <= 9 ? `0${timer}` : timer}

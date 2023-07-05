@@ -44,10 +44,10 @@ export default function DisplayScore({ correctAnswerCount, category }: IProps) {
       <ProgressBar width={250} score={correctAnswerCount * 10} />
 
       <div className="flex w-full mt-8 font-bold items-center justify-between">
-        <button onClick={() => router.reload()} className="p-3 px-6 rounded-lg bg-primary" >
+        <button onClick={() => router.reload()} className="p-3 text-white md:p-3 md:px-6 rounded-lg bg-primary" >
           Try Again
         </button>
-        <Link className="p-3 px-6 rounded-lg bg-primary opacity-20" href="#">
+        <Link className="p-3 text-white md:p-3 md:px-6 rounded-lg bg-primary opacity-20" href="#">
           Leader Board
         </Link>
       </div>

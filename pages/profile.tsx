@@ -114,7 +114,7 @@ function Profile() {
                     <img
                       className={`${
                         loadingImage && "opacity-20"
-                      } rounded-full p-2 w-24 h-24 cursor-pointer`}
+                      } rounded-full p-2 w-20 h-20 md:w-24 md:h-24 cursor-pointer`}
                       src={selectedImage || profile?.image}
                       alt="avatar"
                     />
@@ -122,17 +122,17 @@ function Profile() {
                   <RiAddCircleFill className="absolute text-3xl fill-slate-secondary bottom-0 right-5" />
                 </div>
                 {openImageBox && (
-                  <div className="absolute md:top-1/2 -left-24 md:left-24 bg-white p-4 w-72 rounded-lg">
+                  <div className="absolute md:top-1/2 -left-16 md:left-24 bg-white p-4 w-48 md:w-72 rounded-lg">
                     <p className="text-secondary pb-2 font-bold">
                       Choose Your Avatar
                     </p>
-                    <div ref={ref} className="flex gap-4 flex-wrap">
+                    <div ref={ref} className="flex gap-4 justify-center flex-wrap">
                       {avatars.map((item) => (
                         <img
                         alt="avatar"
                           src={item.image}
                           key={item.id}
-                          className="w-12 cursor-pointer rounded-full hover:scale-110"
+                          className="w-8 md:w-12 cursor-pointer rounded-full hover:scale-110"
                           onClick={() => onImageHandler(item.image)}
                         />
                       ))}
@@ -164,7 +164,7 @@ function Profile() {
                     {" "}
                     Highest Stats{" "}
                   </p>
-                  <div className="flex flex-wrap items-center justify-center gap-x-2">
+                  <div className="flex overflow-x-auto py-4 items-center justify-center gap-x-2">
                     {profile?.category.map((item: ICategory, index: number) => (
                       <div key={item._id}>
                         <div

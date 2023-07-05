@@ -80,13 +80,13 @@ export default function QuestionCard({
     "&uuml;": "ü",
   };
   return (
-    <div className="w-full py-8 px-10 rounded-2xl">
-      <h1 className="text-center text-primary font-bold text-2xl lg:text-3xl mb-8">
+    <div className="w-full py-8  px-3 md:px-10 rounded-2xl">
+      <h1 className="text-center text-primary font-bold text-xl lg:text-3xl mb-8">
         {" "}
         Question {index < 9 ? `0${index + 1}` : index + 1}
         <span className="text-xl lg:text-2xl text-white/20">/10</span>
       </h1>
-      <p className="bg-white font-bold p-5 text-primary text-lg md:text-xl rounded-lg mb-6">
+      <p className="bg-white font-bold p-5 text-primary text-lg md:text-xl rounded-lg mb-4 md:mb-6">
         {quiz.question.replace(/&#?\w+;/g, (match) => entities[match])}
       </p>
       <div>
