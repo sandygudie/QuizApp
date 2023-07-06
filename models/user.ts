@@ -7,6 +7,7 @@ export const userSchema = new mongoose.Schema(
       minLength: 5,
       required: true,
       unique: true,
+      lowercase: true,
     },
     category: [
       {

@@ -60,14 +60,14 @@ export default function Home() {
         <div className=" z-10 xl:max-w-7xl text-center m-auto mt-8">
           <h1 className="font-bold text-xl md:text-[2em] my-2 md:my-4">Take Quiz</h1>
 
-          <div className="w-10/12 m-auto my-4 md:my-8  grid  grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+          <div className="w-10/12 m-auto my-4 md:my-8  flex-wrap flex items-center justify-center gap-4 md:gap-8">
             {Categories.map((item) => {
               return (
                 <button
                   aria-label={item.name}
                   key={item.id}
                   onClick={() => getQuiz(item.name, item.id)}
-                  className="text-white flex flex-col
+                  className=" w-48 h-20 md:h-48 md:w-72 text-white flex flex-col
                    justify-center items-center bg-light-secondary rounded-lg p-4 md:p-12
           cursor-pointer text-center hover:scale-125 hover:bg-gradient-to-r from-primary to-pink-500 hover:text-tourquise hover:border-none"
                 >
