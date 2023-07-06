@@ -93,7 +93,18 @@ export default function Home() {
 
 // error handling when there is no network
 
-// add instruction page with select for difficulty level
-// support leave a star, link to github
+// add 
+// select for difficulty level
 
-// install eslint
+// allow true or false selection in Api
+
+
+
+// Leadership board
+// support leave a star, link to github, contribute by adding questions here
+
+
+
+// add pagination
+// filter for the boards
+
