@@ -15,12 +15,13 @@ module.exports = {
         "slate-500": "rgb(100 116 139)",
         "slate-400": "rgb(148 163 184)",
       },
-      // screens: {
-      //   sm: "200px",
-      //   md: "500px",
-      //   lg: "700px",
-      //   xl: "1280px",
-      // },
+      screens: {
+        // xs: "200px",
+        // sm: "300px",
+        // md: "500px",
+        // lg: "700px",
+        // xl: "1280px",
+      },
       translate: {
         "2/4": "-50%",
       },

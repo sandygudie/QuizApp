@@ -164,7 +164,7 @@ function Profile() {
                     {" "}
                     Highest Stats{" "}
                   </p>
-                  <div className="flex overflow-x-auto py-4 items-center justify-center gap-x-2">
+                  <div className="flex overflow-x-auto py-4 items-center md:justify-center gap-x-2">
                     {profile?.category.map((item: ICategory, index: number) => (
                       <div key={item._id}>
                         <div
