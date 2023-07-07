@@ -29,7 +29,7 @@ export const Categories = [
   },
   {
     id: 28,
-    name: "JAVASCRIPT",
+    name: "Javascript",
     Icon: IoLogoJavascript,
     score: 40,
   },

@@ -5,13 +5,20 @@ import { getUser } from "../services/user";
 import { IUser } from "../types";
 import Header from "../components/Header";
 import { Categories } from "../data";
+import Select from "react-select";
 
 export default function Home() {
   const [profile, setProfile] = useState<IUser>();
+  const [difficulty, setDifficulty] = useState<string | any>("easy");
   const router = useRouter();
-
+  const options = [
+    { value: "easy", label: "Easy" },
+    { value: "medium", label: "Intermediate" },
+    { value: "hard", label: "Expert" },
+  ];
   useEffect(() => {
     const user = getUser();
+
     if (user) {
       setProfile(user);
     } else {
@@ -21,10 +28,10 @@ export default function Home() {
 
   if (!profile) return null;
 
-  const getQuiz = (category: string, id: number) => {
+  const getQuiz = (category: string) => {
     router.push({
       pathname: "/quiz",
-      query: { category, id },
+      query: { category, difficulty },
     });
   };
   return (
@@ -57,22 +64,34 @@ export default function Home() {
       </Head>
       <div className="w-full">
         <Header profile={profile} />
-        <div className=" z-10 xl:max-w-7xl text-center m-auto mt-8">
-          <h1 className="font-bold text-xl md:text-[2em] my-2 md:my-4">Take Quiz</h1>
+        <div className="w-10/12 m-auto z-10 xl:max-w-7xl text-center m-auto mt-8">
+          <div className="flex items-center gap-4 justify-end">
+            <p className="font-bold text-xl">Level :</p>
+            <Select
+              isSearchable={false}
+              defaultValue={options[0]}
+              className="w-36 text-black"
+              options={options}
+              onChange={(selected) => setDifficulty(selected?.value)}
+            />
+          </div>
+          <h1 className="font-bold text-xl md:text-[2em] my-2 md:my-4">
+            Take Quiz
+          </h1>
 
-          <div className="w-10/12 m-auto my-4 md:my-8  flex-wrap flex items-center justify-center gap-4 md:gap-8">
+          <div className="my-4 md:my-16 flex-wrap flex items-center justify-center gap-4 md:gap-8">
             {Categories.map((item) => {
               return (
                 <button
                   aria-label={item.name}
                   key={item.id}
-                  onClick={() => getQuiz(item.name, item.id)}
-                  className=" w-48 h-20 md:h-48 md:w-72 text-white flex flex-col
+                  onClick={() => getQuiz(item.name)}
+                  className=" w-48 h-20 md:h-64 md:w-80 text-white flex flex-col
                    justify-center items-center bg-light-secondary rounded-lg p-4 md:p-12
           cursor-pointer text-center hover:scale-125 hover:bg-gradient-to-r from-primary to-pink-500 hover:text-tourquise hover:border-none"
                 >
                   <p className="font-bold text-sm md:text-2xl mb-2">
-                    {item.name}
+                    {item.name.toUpperCase()}
                   </p>
                   <item.Icon className="text-tourquise text-xl sm:text-4xl md:text-6xl m-0" />
                 </button>
@@ -93,18 +112,11 @@ export default function Home() {
 
 // error handling when there is no network
 
-// add 
+// add
 // select for difficulty level
-
-// allow true or false selection in Api
-
-
 
 // Leadership board
 // support leave a star, link to github, contribute by adding questions here
 
-
-
 // add pagination
 // filter for the boards
-

@@ -7,10 +7,12 @@ export const getQuestions = async (id: number) => {
   return response;
 };
 
-export const getQuestionQuiz = async (category: number) => {
-  let response = await fetch(`/api/user&category=${category}`)
+export const getQuestionQuiz = async (category: string|any,difficulty:string|any) => {
+  let response = await fetch(
+    `https://quizbase.onrender.com/api/v1/quiz?category=${category}&difficulty=${difficulty}`
+  )
     .then((response) => response.json())
-    .then((data) => data.results);
+    .then((data) => data.data);
   return response;
 };
 

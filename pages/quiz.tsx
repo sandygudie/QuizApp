@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IQuestion } from "../types";
 import { useRouter } from "next/router";
-import { getQuestions } from "../services/quizService";
+import { getQuestionQuiz, getQuestions } from "../services/quizService";
 import CountDown from "../components/Quiz/CountDown";
 import QuizBoard from "../components/Quiz/QuizBoard";
 import { getUser } from "../services/user";
@@ -9,7 +9,7 @@ import { getUser } from "../services/user";
 function Quiz() {
   const router = useRouter();
   const data = router.query;
-
+const {category,difficulty} = data
   const [quizQuestions, setQuizQuestions] = useState<IQuestion[] | []>([]);
   const [isCountdown, setIsCountdown] = useState(true);
 
@@ -23,8 +23,11 @@ function Quiz() {
 
   const getQuestionData = async () => {
     try {
-      let result = await getQuestions(Number(data.id));
+      // let result = await getQuestions(Number(data.id));
+      let result = await getQuestionQuiz(category,difficulty)
+      console.log(result)
       setQuizQuestions(result);
+
     } catch (error) {
       console.log(error);
     }
