@@ -64,18 +64,18 @@ export default function Home() {
       </Head>
       <div className="w-full">
         <Header profile={profile} />
-        <div className="w-10/12 m-auto z-10 xl:max-w-7xl text-center m-auto mt-8">
-          <div className="flex items-center gap-4 justify-end">
-            <p className="font-bold text-xl">Level :</p>
+        <div className="w-11/12 p-6 m-auto z-10 xl:max-w-7xl text-center m-auto mt-12">
+          <div className="flex my-6 items-center gap-4 justify-center md:justify-end">
+            <p className="font-bold text-lg md:text-xl">Level :</p>
             <Select
               isSearchable={false}
               defaultValue={options[0]}
-              className="w-36 text-black"
+              className="w-36 text-black border-none outline-none"
               options={options}
               onChange={(selected) => setDifficulty(selected?.value)}
             />
           </div>
-          <h1 className="font-bold text-xl md:text-[2em] my-2 md:my-4">
+          <h1 className="font-bold text-xl md:text-[2em] my-8">
             Take Quiz
           </h1>
 
@@ -86,7 +86,7 @@ export default function Home() {
                   aria-label={item.name}
                   key={item.id}
                   onClick={() => getQuiz(item.name)}
-                  className=" w-48 h-20 md:h-64 md:w-80 text-white flex flex-col
+                  className=" w-32 h-28 sm:w-56 md:h-64 md:w-72 text-white flex flex-col
                    justify-center items-center bg-light-secondary rounded-lg p-4 md:p-12
           cursor-pointer text-center hover:scale-125 hover:bg-gradient-to-r from-primary to-pink-500 hover:text-tourquise hover:border-none"
                 >
@@ -112,11 +112,13 @@ export default function Home() {
 
 // error handling when there is no network
 
-// add
-// select for difficulty level
+// add random 10questions
 
 // Leadership board
 // support leave a star, link to github, contribute by adding questions here
 
 // add pagination
 // filter for the boards
+
+
+// fix the quiz option circles

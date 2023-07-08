@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IQuestion } from "../types";
 import { useRouter } from "next/router";
-import { getQuestionQuiz, getQuestions } from "../services/quizService";
+import { getQuestionQuiz} from "../services/quizService";
 import CountDown from "../components/Quiz/CountDown";
 import QuizBoard from "../components/Quiz/QuizBoard";
 import { getUser } from "../services/user";
@@ -23,7 +23,6 @@ const {category,difficulty} = data
 
   const getQuestionData = async () => {
     try {
-      // let result = await getQuestions(Number(data.id));
       let result = await getQuestionQuiz(category,difficulty)
       console.log(result)
       setQuizQuestions(result);
