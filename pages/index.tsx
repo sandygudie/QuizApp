@@ -64,8 +64,8 @@ export default function Home() {
       </Head>
       <div className="w-full">
         <Header profile={profile} />
-        <div className="md:w-11/12 p-1 sm:p-6 m-auto z-10 xl:max-w-7xl text-center m-auto md:mt-12">
-          <div className="flex mb-6 items-center gap-4 justify-center md:justify-end">
+        <div className="md:w-11/12 p-1 sm:p-6 m-auto z-10 xl:max-w-7xl text-center m-auto md:mt-8">
+          <div className="flex my-8 md:mt-0 md:mb-6 items-center gap-4 justify-center md:justify-end">
             <p className="font-bold text-lg md:text-xl">Level :</p>
             <Select
               isSearchable={false}
