@@ -14,7 +14,7 @@ function QuizHeader({ pauseQuiz, timer, scoreStatus, category }: IProps) {
   return (
     <>
       <div className="shadow-xl ">
-        <div className="xl:max-w-7xl m-auto flex font-bold text-slate-400 justify-between items-center w-full px-4 lg:px-4 lg:pr-20 py-5 md:py-6">
+        <div className="z-30 xl:max-w-7xl m-auto flex font-bold text-slate-400 justify-between items-center w-full px-4 lg:px-4 lg:pr-20 py-5 md:py-6">
           <div className="flex items-center">
             <TiArrowBack
               onClick={() =>

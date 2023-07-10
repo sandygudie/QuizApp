@@ -117,8 +117,7 @@ export default function Home() {
 // Leadership board
 // support leave a star, link to github, contribute by adding questions here
 
-// add pagination
-// filter for the boards
+
 
 
 // fix the quiz option circles

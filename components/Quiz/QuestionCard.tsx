@@ -114,7 +114,7 @@ export default function QuestionCard({
               />
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <p className="flex items-center justify-center bg-white rounded-full h-10 w-10 text-primary mr-3">
+                  <p className="flex items-center justify-center bg-white rounded-full px-3 py-1 text-primary mr-3">
                     {" "}
                     {String.fromCharCode(index + 65)}
                   </p>

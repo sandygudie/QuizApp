@@ -24,7 +24,7 @@ const {category,difficulty} = data
   const getQuestionData = async () => {
     try {
       let result = await getQuestionQuiz(category,difficulty)
-      console.log(result)
+      // console.log(result)
       setQuizQuestions(result);
 
     } catch (error) {
