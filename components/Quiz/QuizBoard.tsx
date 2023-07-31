@@ -130,7 +130,7 @@ export default function QuizBoard({
                   <CgSpinner className="animate-spin block m-auto w-10 h-10" />
                 </p>
               ) : quizQuestions.length === 0 ? (
-                <p>No Quiz available</p>
+                <p className="text-center">No Quiz available</p>
               ) : (
                 <>
                   {quizQuestions.map((list, i) => {
