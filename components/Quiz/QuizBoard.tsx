@@ -10,9 +10,13 @@ import { CgSpinner } from "react-icons/cg";
 
 interface IQuizBoardProps {
   quizQuestions: IQuestion[];
+  isLoading: boolean;
 }
 
-export default function QuizBoard({ quizQuestions }: IQuizBoardProps) {
+export default function QuizBoard({
+  isLoading,
+  quizQuestions,
+}: IQuizBoardProps) {
   const router = useRouter();
 
   const data = router.query;
@@ -21,6 +25,7 @@ export default function QuizBoard({ quizQuestions }: IQuizBoardProps) {
   let audioElement: HTMLAudioElement;
 
   const [isOpenModal, setIsOpenModal] = useState(false);
+
   let [timer, setTimer] = useState(10);
   const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
   let [questionCounter, setQuestionCounter] = useState(0);
@@ -118,12 +123,14 @@ export default function QuizBoard({ quizQuestions }: IQuizBoardProps) {
         ) : (
           <>
             <div className="z-10 w-full md:w-[30rem] lg:w-[35rem] absolute top-2/4 left-2/4 translate-x-2/4 translate-y-2/4 mt-10">
-              {quizQuestions.length === 0 ? (
+              {isLoading ? (
                 <p className="text-center font-bold">
                   {" "}
                   Quiz Loading{" "}
                   <CgSpinner className="animate-spin block m-auto w-10 h-10" />
                 </p>
+              ) : quizQuestions.length === 0 ? (
+                <p>No Quiz available</p>
               ) : (
                 <>
                   {quizQuestions.map((list, i) => {
